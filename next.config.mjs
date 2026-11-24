@@ -1,11 +1,10 @@
-import type { NextConfig } from 'next'
-
 /**
  * Cache Components is intentionally off: the site is fully static marketing
  * content, project routes must be allowed to have zero published entries, and
  * Activity-preserved hidden routes interfere with GSAP pinning.
  */
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   cacheComponents: false,
   partialPrefetching: false,
   poweredByHeader: false,
@@ -26,7 +25,7 @@ const nextConfig: NextConfig = {
    * homepage section. Temporary (307) so they can come back. Remove an entry to reopen a page.
    */
   async redirects() {
-    const to = (from: string, hash: string, en = false) => ({ source: from, destination: `${en ? '/en' : '/'}#${hash}`, permanent: false })
+    const to = (from, hash, en = false) => ({ source: from, destination: `${en ? '/en' : '/'}#${hash}`, permanent: false })
     return [
       to('/services/:path*', 'nos-expertises'),
       to('/realisations/:path*', 'realisations'),
